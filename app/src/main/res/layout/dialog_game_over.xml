@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#bd387c"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialog_LBL_caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Game is over"
+        android:fontFamily="@font/js"
+        android:textColor="#FFFFFF"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/dialog_BTN_playAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/js"
+        android:textColor="#bd387c"
+        android:textSize="25sp"
+        android:backgroundTint="#ffffff"
+        android:text="Play again" />
+
+    <Button
+        android:id="@+id/dialog_BTN_backMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/js"
+        android:textColor="#bd387c"
+        android:textSize="25sp"
+        android:backgroundTint="#ffffff"
+        android:text="Back to Menu" />
+
+</LinearLayout>

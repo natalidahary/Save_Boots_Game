@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_ground"
+        android:drawable="@drawable/ground"
+        android:gravity="center"
+        android:width="5000dp"
+        android:height="750dp"/>
+
+</layer-list>

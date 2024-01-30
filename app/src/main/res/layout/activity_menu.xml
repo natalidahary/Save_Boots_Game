@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/menu_background"
+    android:gravity="center"
+    tools:context=".MenuActivity">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/menu_LBL_inputName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Name"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/nightfishing"
+        android:background="@drawable/rectangle_input"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#bd387c"/>
+
+    <RelativeLayout
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/menu_SW_faster"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nightfishing"
+            android:shadowColor="#A2C3C7"
+            android:text="Fast Mode"
+            android:textColor="#bd387c"
+            android:textSize="20sp"
+            android:theme="@style/SCBSwitch"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/menu_SW_sensor"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:shadowColor="#A2C3C7"
+            android:text="Sensor Mode"
+            android:fontFamily="@font/nightfishing"
+            android:textColor="#bd387c"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:theme="@style/SCBSwitch"/>
+    </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/start_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:fontFamily="@font/nightfishing"
+        android:textSize="20sp"
+        android:layout_marginTop="360dp"
+        android:textColor="@color/white"
+        android:backgroundTint="#bd387c"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/globalScore_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Global Score"
+        android:fontFamily="@font/nightfishing"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:backgroundTint="#bd387c"/>
+
+</LinearLayout>
