@@ -402,17 +402,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        resetGame();
+        // Restart or resume the game loop
+        gameHandler.post(updateObjectsRunnable);
+        // Resume score updates, if necessary
+        gameHandler.postDelayed(scoreRunnable, 5000);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        // Remove callbacks to pause the game loop and score updates
+        gameHandler.removeCallbacksAndMessages(updateObjectsRunnable);
+        gameHandler.removeCallbacksAndMessages(scoreRunnable);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        gameHandler.removeCallbacksAndMessages(null);
     }
 
 
