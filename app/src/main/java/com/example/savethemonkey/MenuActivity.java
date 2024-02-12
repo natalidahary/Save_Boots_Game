@@ -32,8 +32,7 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         // Initialize the button and EditText
-        start_BTN = findViewById(R.id.start_BTN);
-        menu_LBL_inputName = findViewById(R.id.menu_LBL_inputName);
+        findViews();
         menu_LBL_inputName.setText("");
         soundManager = new SoundManager(this);
 
@@ -48,6 +47,11 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void findViews() {
+        start_BTN = findViewById(R.id.start_BTN);
+        menu_LBL_inputName = findViewById(R.id.menu_LBL_inputName);
     }
 
     @Override
