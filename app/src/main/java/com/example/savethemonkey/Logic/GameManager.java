@@ -1,17 +1,26 @@
 package com.example.savethemonkey.Logic;
 
+import android.content.Context;
+import com.example.savethemonkey.DB.DataManager;
+import com.example.savethemonkey.DB.Record;
+import com.example.savethemonkey.Utils.SharedPreferances;
+import com.google.gson.Gson;
+
 import java.util.Random;
 
 public class GameManager {
 
     private int life;
-    private int score;
+    private int score = 0;
     Random rand = new Random();
-    public static final int OBJECTS_ROWS = 5;
-    public static final int OBJECTS_COLS = 3;
+    public static final int OBJECTS_ROWS = 9;
+    public static final int OBJECTS_COLS = 5;
     private int currentIndexBoots = OBJECTS_COLS / 2;
     private int[][] main_type_matrix;
-    public static final int FALLING_SPEED = 1000;
+    private String name;
+    private Context context;
+    private final String RECORD = "records";
+
 
 
     public GameManager() {
@@ -20,9 +29,11 @@ public class GameManager {
         initializeObjectsPositions();
     }
 
-    public GameManager(int life) {
+    public GameManager(int life,Context context,String name){
         this.life = life;
         this.score = 0;
+        this.context = context;
+        this.name = name;
         initializeObjectsPositions();
     }
 
@@ -31,6 +42,7 @@ public class GameManager {
             life--;
         }
     }
+
     public boolean isGameOver() {
         return life <= 0;
     }
@@ -38,6 +50,7 @@ public class GameManager {
     public int getLife() {
         return life;
     }
+
     public int getScore() {
         return score;
     }
@@ -89,10 +102,31 @@ public class GameManager {
 
     public int randTypeImage() {
         int res = rand.nextInt(5);
-        if( res > 3){
+        if (res > 3) {
             return 1;//bag
         }
         return 0;//swiper
+    }
 
+    public void save(double lon , double lat) {
+        DataManager myDB;
+        String json = SharedPreferances.getInstance().getStrSP(RECORD,"");
+        myDB = new Gson().fromJson(json,DataManager.class);
+        if(myDB == null){
+            myDB = new DataManager();
+        }
+        Record rec = createRecord(lon,lat);
+        myDB.getScoreResults().add(rec);
+        SharedPreferances.getInstance().putString(RECORD,new Gson().toJson(myDB));
+    }
+
+    private Record createRecord(double lon , double lat) {
+
+        return new Record().setName(name).setScore(score).setLat(lat).setLon(lon);
+    }
+
+
+    public int getObjectsCols() {
+        return  OBJECTS_COLS;
     }
 }

@@ -6,19 +6,21 @@ import static com.example.savethemonkey.Logic.GameManager.OBJECTS_ROWS;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import com.example.savethemonkey.Audio.SoundManager;
-import com.example.savethemonkey.Data.DataManager;
+import com.example.savethemonkey.DB.DataManager;
 import com.example.savethemonkey.Logic.GameManager;
+import com.example.savethemonkey.Sensors.SensorDetector;
+import com.example.savethemonkey.Utils.SharedPreferances;
+import com.example.savethemonkey.Utils.Signal;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -27,26 +29,34 @@ import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
+
     // UI elements
     private ShapeableImageView[] main_boots_IMG;
     private ShapeableImageView[][] main_swiper_IMG;
     private MaterialTextView main_LBL_score;
     private ShapeableImageView[] main_IMG_lives;
-    private MaterialButton leftButton, rightButton;
     private ShapeableImageView[] broken_heart_IMG;
+    private MaterialButton[] game_BTN_arrows;
+    private RelativeLayout bar_background;
 
-    // Sound management
-    private SoundManager soundManager;
-
-    // Game management
+    // Game management components
     private GameManager gameManager;
-    private int time = 0;
-    private String playerName;
+    private SensorDetector sensorDetector;
+    private SoundManager soundManager;
+    private Handler gameHandler = new Handler();
+
+    // Game settings and state
+    private boolean isSensorOn = false;
+    private String name = "";
+    private double lat, lon;
+    private int time = 0, delay= 1000;
+    private boolean[] bootsDamaged = new boolean[OBJECTS_COLS];
 
     // Constants
+    public static final String KEY_SENSOR = "KEY_SENSOR", KEY_DELAY = "KEY_DELAY",
+            KEY_NAME = "KEY_NAME", KEY_LON = "KEY_LON", KEY_LAT = "KEY_LAT";
     private final String[] typeImage = new String[]{"ic_swiper", "ic_bag"};
-    private Handler gameHandler = new Handler();
-    private boolean[] bootsDamaged = new boolean[OBJECTS_COLS];
+    private final int fast_delay = 700, slow_delay = 1000;
 
 
     @Override
@@ -55,16 +65,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeViews();
-        initializeGameManager();
+        extractIntentData();
+        initializeGameComponents();
+        setupListeners();
+    }
+
+
+    private void extractIntentData() {
+        Intent previousIntent = getIntent();
+        isSensorOn = previousIntent.getBooleanExtra(KEY_SENSOR, false);
+        boolean isFasterMode = previousIntent.getBooleanExtra(KEY_DELAY, false);
+        name = previousIntent.getStringExtra(KEY_NAME);
+        lon = previousIntent.getDoubleExtra(KEY_LON, 0);
+        lat = previousIntent.getDoubleExtra(KEY_LAT, 0);
+        setDelay(isFasterMode);
+    }
+
+
+    private void initializeGameComponents() {
+        gameManager = new GameManager(main_IMG_lives.length, this, name);
+        bootsDamaged = new boolean[gameManager.getObjectsCols()];
+        soundManager = new SoundManager(this);
+        sensorDetector = new SensorDetector(this, callBack_steps);
+        setInitialGameViews();
+        setupGame();
+    }
+
+    private void setInitialGameViews() {
         setInitialBootsVisibility();
         setInitialSwiperInvisible();
         setBrokenHeartsInvisible();
-        initializeSoundManager();
-
-        setupGame();
-
-        setupButtons();
     }
+
 
     private Runnable updateObjectsRunnable = new Runnable() {
         @Override
@@ -80,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 time++;
 
                 // Schedule the next update
-                gameHandler.postDelayed(this, GameManager.FALLING_SPEED);
+                gameHandler.postDelayed(this, delay);
 
                 // Check if the game is over after updating
                 if (gameManager.isGameOver()) {
@@ -101,35 +133,71 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    private SensorDetector.CallBackView callBack_steps = new SensorDetector.CallBackView() {
+        @Override
+        public void moveMonkeyBySensor(int index){
+            main_boots_IMG[gameManager.getCurrentIndexBoots()].setVisibility(View.INVISIBLE);
+            gameManager.moveDirectionBoots(index);
+            main_boots_IMG[gameManager.getCurrentIndexBoots()].setVisibility(View.VISIBLE);
+        }
+        @Override
+        public void changeSpeedBySensor(int speed) {
+            delay = speed;
+        }
+    };
+
+
+    private void setDelay(boolean isFasterMode) {
+        if(isFasterMode)
+            delay = fast_delay;
+        else
+            delay = slow_delay;
+
+    }
+
+    private void saveRecord() {
+        gameManager.save(lon,lat);
+    }
+
+    private void setupListeners() {
+        game_BTN_arrows[0].setOnClickListener(v -> handleArrowClick(-1));
+        game_BTN_arrows[1].setOnClickListener(v -> handleArrowClick(1));
+        if (isSensorOn) {
+            sensorDetector.startX();
+            hideGameButtons();
+        } else {
+            showGameButtons();
+        }
+    }
+
+    private void showGameButtons() {
+        game_BTN_arrows[0].setVisibility(View.VISIBLE);
+        game_BTN_arrows[1].setVisibility(View.VISIBLE);
+    }
+
+    private void hideGameButtons() {
+        game_BTN_arrows[0].setVisibility(View.INVISIBLE);
+        game_BTN_arrows[1].setVisibility(View.INVISIBLE);
+        bar_background.setVisibility(View.INVISIBLE);
+    }
+
+    private void handleArrowClick(int direction) {
+        moveBoots(direction);
+        soundManager.playClickSound();
+    }
+
     private void setupGame() {
-        playerName = DataManager.getInstance().getPlayerName();
+        gameHandler.postDelayed(updateObjectsRunnable, delay);
         gameHandler.postDelayed(scoreRunnable, 5000);
-        gameHandler.post(updateObjectsRunnable);
     }
-
-    private void setupButtons() {
-        leftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveBoots(-1); // Move left
-                soundManager.playClickSound();
-            }
-        });
-
-        rightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveBoots(1); // Move right
-                soundManager.playClickSound();
-            }
-        });
-    }
-
 
     private void initializeViews() {
         main_boots_IMG = new ShapeableImageView[] {
                 findViewById(R.id.main_IMG_leftBoots),
+                findViewById(R.id.main_IMG_leftMiddleBoots),
                 findViewById(R.id.main_IMG_middleBoots),
+                findViewById(R.id.main_IMG_rightMiddleBoots),
                 findViewById(R.id.main_IMG_rightBoots)
         };
         main_IMG_lives = new ShapeableImageView[]{
@@ -141,46 +209,82 @@ public class MainActivity extends AppCompatActivity {
                 {
                         findViewById(R.id.main_IMG_swiper1),
                         findViewById(R.id.main_IMG_swiper2),
-                        findViewById(R.id.main_IMG_swiper3)
-                },
-                {
+                        findViewById(R.id.main_IMG_swiper3),
                         findViewById(R.id.main_IMG_swiper4),
-                        findViewById(R.id.main_IMG_swiper5),
-                        findViewById(R.id.main_IMG_swiper6)
+                        findViewById(R.id.main_IMG_swiper5)
                 },
                 {
+                        findViewById(R.id.main_IMG_swiper6),
                         findViewById(R.id.main_IMG_swiper7),
                         findViewById(R.id.main_IMG_swiper8),
-                        findViewById(R.id.main_IMG_swiper9)
+                        findViewById(R.id.main_IMG_swiper9),
+                        findViewById(R.id.main_IMG_swiper10)
                 },
                 {
-                        findViewById(R.id.main_IMG_swiper10),
                         findViewById(R.id.main_IMG_swiper11),
-                        findViewById(R.id.main_IMG_swiper12)
-                },
-                {
+                        findViewById(R.id.main_IMG_swiper12),
                         findViewById(R.id.main_IMG_swiper13),
                         findViewById(R.id.main_IMG_swiper14),
                         findViewById(R.id.main_IMG_swiper15)
+
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper16),
+                        findViewById(R.id.main_IMG_swiper17),
+                        findViewById(R.id.main_IMG_swiper18),
+                        findViewById(R.id.main_IMG_swiper19),
+                        findViewById(R.id.main_IMG_swiper20)
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper21),
+                        findViewById(R.id.main_IMG_swiper22),
+                        findViewById(R.id.main_IMG_swiper23),
+                        findViewById(R.id.main_IMG_swiper24),
+                        findViewById(R.id.main_IMG_swiper25)
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper26),
+                        findViewById(R.id.main_IMG_swiper27),
+                        findViewById(R.id.main_IMG_swiper28),
+                        findViewById(R.id.main_IMG_swiper29),
+                        findViewById(R.id.main_IMG_swiper30)
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper31),
+                        findViewById(R.id.main_IMG_swiper32),
+                        findViewById(R.id.main_IMG_swiper33),
+                        findViewById(R.id.main_IMG_swiper34),
+                        findViewById(R.id.main_IMG_swiper35)
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper36),
+                        findViewById(R.id.main_IMG_swiper37),
+                        findViewById(R.id.main_IMG_swiper38),
+                        findViewById(R.id.main_IMG_swiper39),
+                        findViewById(R.id.main_IMG_swiper40)
+                },
+                {
+                        findViewById(R.id.main_IMG_swiper41),
+                        findViewById(R.id.main_IMG_swiper42),
+                        findViewById(R.id.main_IMG_swiper43),
+                        findViewById(R.id.main_IMG_swiper44),
+                        findViewById(R.id.main_IMG_swiper45)
                 }
         };
         broken_heart_IMG = new ShapeableImageView[]{
                 findViewById(R.id.broken_heart1_IMG),
                 findViewById(R.id.broken_heart2_IMG),
-                findViewById(R.id.broken_heart3_IMG)
+                findViewById(R.id.broken_heart3_IMG),
+                findViewById(R.id.broken_heart4_IMG),
+                findViewById(R.id.broken_heart5_IMG)
         };
 
-        leftButton = findViewById(R.id.main_BTN_left);
-        rightButton = findViewById(R.id.main_BTN_right);
-    }
+        game_BTN_arrows = new MaterialButton[]{
+                findViewById(R.id.main_BTN_left),
+                findViewById(R.id.main_BTN_right)
+        };
 
-    private void initializeGameManager() {
-        gameManager = new GameManager(main_IMG_lives.length);
-        Arrays.fill(bootsDamaged, false);
-    }
-
-    private void initializeSoundManager() {
-        soundManager = new SoundManager(this);
+        bar_background = findViewById(R.id.bar_background);
     }
 
     private void setInitialBootsVisibility() {
@@ -259,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
             // Handle the collision with a Bag
             handleBagCollision();
         }
+        Signal.getInstance().vibrate();
     }
 
     private void handleSwiperCollision() {
@@ -276,8 +381,8 @@ public class MainActivity extends AppCompatActivity {
                         setBrokenHeartsInvisible();
                     }, 1000);
                 }
-                Toast.makeText(MainActivity.this, "Chatfani, You must not kidnap!", Toast.LENGTH_SHORT).show();
-                vibrate();
+                Signal.getInstance().vibrate();
+                Signal.getInstance().toast("Chatfani, You must not kidnap!");
             });
         }
     }
@@ -344,15 +449,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Set a click listener for the play again button
         dialog_BTN_playAgain.setOnClickListener(view -> {
+            soundManager.playClickSound();
             resetGame();
             gameOverDialog.dismiss();
         });
 
         // Set a click listener for the back to menu button
         dialog_BTN_backMenu.setOnClickListener(view -> {
+            soundManager.playClickSound();
             gameOverDialog.dismiss();
+            Intent intent = new Intent(MainActivity.this,MenuActivity.class);
+            startActivity(intent);
             finish();
         });
+
+        saveRecord();
 
         // Show the dialog
         gameOverDialog.show();
@@ -360,7 +471,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetGame() {
         // Reset the game state
-        gameManager = new GameManager(main_IMG_lives.length);
+        //gameManager = new GameManager(main_IMG_lives.length);
+        gameManager = new GameManager(main_IMG_lives.length,this,name);
         updateLivesDisplay();
 
         gameHandler.removeCallbacks(updateObjectsRunnable);
@@ -382,16 +494,9 @@ public class MainActivity extends AppCompatActivity {
         // Start score runnable when the game is reset
         gameHandler.postDelayed(scoreRunnable, 5000);
 
-        DataManager.getInstance().savePlayerScore(playerName, gameManager.getScore());
+        //DataManager.getInstance().savePlayerScore(playerName, gameManager.getScore());
     }
 
-    private void vibrate() {
-        //noinspection deprecation
-        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator != null && vibrator.hasVibrator()) {
-            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        }
-    }
 
     @Override
     protected void onDestroy() {
@@ -406,6 +511,9 @@ public class MainActivity extends AppCompatActivity {
         gameHandler.post(updateObjectsRunnable);
         // Resume score updates, if necessary
         gameHandler.postDelayed(scoreRunnable, 5000);
+        if(isSensorOn) {
+            sensorDetector.startX();
+        }
     }
 
     @Override
@@ -414,14 +522,20 @@ public class MainActivity extends AppCompatActivity {
         // Remove callbacks to pause the game loop and score updates
         gameHandler.removeCallbacksAndMessages(updateObjectsRunnable);
         gameHandler.removeCallbacksAndMessages(scoreRunnable);
+        if(isSensorOn) {
+            sensorDetector.stopX();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         gameHandler.removeCallbacksAndMessages(null);
+        if(isSensorOn) {
+            sensorDetector.stopX();
+        }
+        soundManager.releaseResources();
     }
-
 
 }
 

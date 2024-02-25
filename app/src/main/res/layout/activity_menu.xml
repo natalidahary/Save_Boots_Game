@@ -5,86 +5,124 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/menu_background"
+    android:background="@drawable/new_background"
     android:gravity="center"
     tools:context=".MenuActivity">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/header_LBL"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:text="Save Our\nBoots"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nightfishing"
+        android:shadowColor="@color/black"
+        android:textStyle="bold"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/menu_LBL_inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:shadowDx="2.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.5"
+        android:textAllCaps="true"
+        android:shadowColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle_input"
+        android:backgroundTint="@color/light2_purple"
+        android:fontFamily="@font/nightfishing"
         android:hint="Enter Your Name"
         android:inputType="textPersonName"
         android:padding="10dp"
-        android:layout_marginTop="140dp"
-        android:fontFamily="@font/nightfishing"
-        android:background="@drawable/rectangle_input"
-        android:textSize="15sp"
+        android:textColorHint="@color/white"
         android:textColor="@color/black"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#bd387c"/>
+        android:textSize="25sp" />
 
-    <RelativeLayout
-        android:layout_width="340dp"
-        android:layout_height="50dp"
-        android:background="@drawable/bar">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/menu_SW_faster"
-            android:layout_width="140dp"
+            android:layout_width="220dp"
             android:layout_height="40dp"
+            android:shadowDx="3.5"
+            android:shadowDy="2.5"
+            android:shadowRadius="5"
+            android:shadowColor="@color/black"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nightfishing"
-            android:shadowColor="#A2C3C7"
-            android:text="Fast Mode"
-            android:textColor="#bd387c"
-            android:textSize="20sp"
+            android:text="   Fast Mode"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:theme="@style/SCBSwitch"/>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/menu_SW_sensor"
-            android:layout_width="160dp"
+            android:layout_width="200dp"
             android:layout_height="40dp"
-            android:shadowColor="#A2C3C7"
+            android:shadowDx="3.5"
+            android:shadowDy="2.5"
+            android:shadowRadius="5"
+            android:shadowColor="@color/black"
             android:text="Sensor Mode"
             android:fontFamily="@font/nightfishing"
-            android:textColor="#bd387c"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:layout_marginBottom="10dp"
             android:theme="@style/SCBSwitch"/>
     </LinearLayout>
 
-    </RelativeLayout>
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/start_BTN"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/menu_IMG_doraBoots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:srcCompat="@drawable/ic_doraboots" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startGame_BTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowDx="2.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.5"
+        android:textAllCaps="true"
+        android:shadowColor="@color/black"
         android:text="Start Game"
         android:fontFamily="@font/nightfishing"
         android:textSize="20sp"
-        android:layout_marginTop="360dp"
-        android:textColor="@color/white"
-        android:backgroundTint="#bd387c"/>
+        android:textColor="@color/light3_purple"
+        android:backgroundTint="@color/white"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/globalScore_BTN"
+        android:id="@+id/top10_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Global Score"
+        android:shadowDx="2.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="1.5"
+        android:textAllCaps="true"
+        android:shadowColor="@color/black"
+        android:text="Top 10"
         android:fontFamily="@font/nightfishing"
         android:textSize="20sp"
-        android:textColor="@color/white"
-        android:backgroundTint="#bd387c"/>
+        android:textColor="@color/light3_purple"
+        android:backgroundTint="@color/white"/>
 
 </LinearLayout>

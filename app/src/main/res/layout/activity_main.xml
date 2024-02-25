@@ -77,7 +77,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:orientation="horizontal">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -99,32 +99,32 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:layout_weight="0.5">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="horizontal">
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/main_IMG_swiper4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_swiper"/>
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/main_IMG_swiper5"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_swiper"/>
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper6"
@@ -132,57 +132,26 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper7"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
+
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper8"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
+
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper9"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper10"
@@ -190,6 +159,23 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_swiper11"
                             android:layout_width="0dp"
@@ -204,31 +190,276 @@
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_swiper"/>
 
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper14"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper15"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper16"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper17"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper18"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper19"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_swiper20"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_swiper"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/swiper_Layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:orientation="horizontal">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/main_IMG_swiper13"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_swiper"/>
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/main_IMG_swiper14"
+                        android:id="@+id/main_IMG_swiper21"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_swiper"/>
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/main_IMG_swiper15"
+                        android:id="@+id/main_IMG_swiper22"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper23"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper24"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper25"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper26"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper27"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper28"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper29"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper31"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper32"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper33"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper34"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper35"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper36"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper37"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper38"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper39"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper41"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper42"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper43"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper44"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_swiper"/>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/main_IMG_swiper45"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -266,6 +497,20 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_broken_heart"/>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/broken_heart4_IMG"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_broken_heart"/>
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/broken_heart5_IMG"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_broken_heart"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -289,7 +534,19 @@
                             android:layout_weight="1"
                             app:srcCompat="@drawable/ic_boots"/>
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_leftMiddleBoots"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_boots"/>
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/main_IMG_middleBoots"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/ic_boots"/>
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/main_IMG_rightMiddleBoots"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -305,6 +562,7 @@
             </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/bar_background"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

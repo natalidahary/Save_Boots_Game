@@ -2,10 +2,10 @@
 <resources>
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">#bd387c</item>
+        <item name="colorControlActivated">@color/light3_purple</item>
 
         <!-- inactive thumb color -->
-        <item name="colorSwitchThumbNormal">#bd387c</item>
+        <item name="colorSwitchThumbNormal">@color/light3_purple</item>
 
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f</item>

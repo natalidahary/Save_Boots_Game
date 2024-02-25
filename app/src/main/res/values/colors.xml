@@ -4,7 +4,10 @@
     <color name="colorPrimary">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFFFF</color>
     <color name="colorAccent">#FFFFFFFF</color>
-
+    <color name="menu_background">#b2c4e8</color>
+    <color name="light_purple">#A9BCF5</color>
+    <color name="light2_purple">#819FF7</color>
+    <color name="light3_purple">#5882FA</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <!--switch colors-->

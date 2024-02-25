@@ -2,10 +2,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ic_ground"
-        android:drawable="@drawable/ground"
+        android:id="@+id/ic_doraboots"
+        android:drawable="@drawable/doraboots"
         android:gravity="center"
-        android:width="5000dp"
-        android:height="750dp"/>
+        android:width="230dp"
+        android:height="230dp"/>
 
 </layer-list>
